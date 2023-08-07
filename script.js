@@ -1,56 +1,56 @@
-function generateSudokuGrid() {
-  const size = 9;
-  const grid = Array.from({ length: size }, () => Array(size).fill(0));
-  function isValidPlacement(row, col, num) {
-    for (let i = 0; i < size; i++) {
-      if (grid[row][i] === num || grid[i][col] === num) {
-        return false;
-      }
-    }
-    const startRow = Math.floor(row / 3) * 3;
-    const startCol = Math.floor(col / 3) * 3;
-    for (let i = 0; i < 3; i++) {
-      for (let j = 0; j < 3; j++) {
-        if (grid[startRow + i][startCol + j] === num) {
-          return false;
-        }
-      }
-    }
-    return true;
-  }
-  function solveSudoku() {
-    for (let row = 0; row < size; row++) {
-      for (let col = 0; col < size; col++) {
-        if (grid[row][col] === 0) {
-          for (let num = 1; num <= 9; num++) {
-            if (isValidPlacement(row, col, num)) {
-              grid[row][col] = num;
-              if (solveSudoku()) {
-                return true;
-              }
-              grid[row][col] = 0;
-            }
-          }
-          return false;
-        }
-      }
-    }
-    return true;
-  }
-  solveSudoku();
-  const clonedGrid = grid.map((row) => row.slice());
-  const numToRemove = 50; 
-  let count = 0;
-  while (count < numToRemove) {
-    const row = Math.floor(Math.random() * size);
-    const col = Math.floor(Math.random() * size);
-    if (clonedGrid[row][col] !== 0) {
-      clonedGrid[row][col] = 0;
-      count++;
-    }
-  }
-  return clonedGrid;
-}
+// function generateSudokuGrid() {
+//   const size = 9;
+//   const grid = Array.from({ length: size }, () => Array(size).fill(0));
+//   function isValidPlacement(row, col, num) {
+//     for (let i = 0; i < size; i++) {
+//       if (grid[row][i] === num || grid[i][col] === num) {
+//         return false;
+//       }
+//     }
+//     const startRow = Math.floor(row / 3) * 3;
+//     const startCol = Math.floor(col / 3) * 3;
+//     for (let i = 0; i < 3; i++) {
+//       for (let j = 0; j < 3; j++) {
+//         if (grid[startRow + i][startCol + j] === num) {
+//           return false;
+//         }
+//       }
+//     }
+//     return true;
+//   }
+//   function solveSudoku() {
+//     for (let row = 0; row < size; row++) {
+//       for (let col = 0; col < size; col++) {
+//         if (grid[row][col] === 0) {
+//           for (let num = 1; num <= 9; num++) {
+//             if (isValidPlacement(row, col, num)) {
+//               grid[row][col] = num;
+//               if (solveSudoku()) {
+//                 return true;
+//               }
+//               grid[row][col] = 0;
+//             }
+//           }
+//           return false;
+//         }
+//       }
+//     }
+//     return true;
+//   }
+//   solveSudoku();
+//   const clonedGrid = grid.map((row) => row.slice());
+//   const numToRemove = 50; 
+//   let count = 0;
+//   while (count < numToRemove) {
+//     const row = Math.floor(Math.random() * size);
+//     const col = Math.floor(Math.random() * size);
+//     if (clonedGrid[row][col] !== 0) {
+//       clonedGrid[row][col] = 0;
+//       count++;
+//     }
+//   }
+//   return clonedGrid;
+// }
 function createSudokuGrid() {
   const gridContainer = document.querySelector(".grid-container");
   const grid = generateSudokuGrid();
@@ -155,72 +155,72 @@ function shuffleArray(array) {
     [array[i], array[j]] = [array[j], array[i]];
   }
 }
-// function generateSudokuGrid() {
-//   const size = 9;
-//   const grid = Array.from({ length: size }, () => Array(size).fill(0));
-//   function isValidPlacement(row, col, num) {
-//     for (let i = 0; i < size; i++) {
-//       if (grid[row][i] === num || grid[i][col] === num) {
-//         return false;
-//       }
-//     }
-//     const startRow = Math.floor(row / 3) * 3;
-//     const startCol = Math.floor(col / 3) * 3;
-//     for (let i = 0; i < 3; i++) {
-//       for (let j = 0; j < 3; j++) {
-//         if (grid[startRow + i][startCol + j] === num) {
-//           return false;
-//         }
-//       }
-//     }
+function generateSudokuGrid() {
+  const size = 9;
+  const grid = Array.from({ length: size }, () => Array(size).fill(0));
+  function isValidPlacement(row, col, num) {
+    for (let i = 0; i < size; i++) {
+      if (grid[row][i] === num || grid[i][col] === num) {
+        return false;
+      }
+    }
+    const startRow = Math.floor(row / 3) * 3;
+    const startCol = Math.floor(col / 3) * 3;
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        if (grid[startRow + i][startCol + j] === num) {
+          return false;
+        }
+      }
+    }
 
-//     return true;
-//   }
+    return true;
+  }
 
-//   // Helper function to solve the Sudoku using backtracking
-//   function solveSudoku() {
-//     for (let row = 0; row < size; row++) {
-//       for (let col = 0; col < size; col++) {
-//         if (grid[row][col] === 0) {
-//           const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-//           shuffleArray(numbers);
+  // Helper function to solve the Sudoku using backtracking
+  function solveSudoku() {
+    for (let row = 0; row < size; row++) {
+      for (let col = 0; col < size; col++) {
+        if (grid[row][col] === 0) {
+          const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+          shuffleArray(numbers);
 
-//           for (const num of numbers) {
-//             if (isValidPlacement(row, col, num)) {
-//               grid[row][col] = num;
-//               if (solveSudoku()) {
-//                 return true;
-//               }
-//               grid[row][col] = 0;
-//             }
-//           }
-//           return false;
-//         }
-//       }
-//     }
-//     return true;
-//   }
+          for (const num of numbers) {
+            if (isValidPlacement(row, col, num)) {
+              grid[row][col] = num;
+              if (solveSudoku()) {
+                return true;
+              }
+              grid[row][col] = 0;
+            }
+          }
+          return false;
+        }
+      }
+    }
+    return true;
+  }
 
-//   // Generate a random starting configuration by solving a completely empty grid
-//   solveSudoku();
+  // Generate a random starting configuration by solving a completely empty grid
+  solveSudoku();
 
-//   // Clone the solved grid to create a new instance
-//   const clonedGrid = grid.map((row) => row.slice());
+  // Clone the solved grid to create a new instance
+  const clonedGrid = grid.map((row) => row.slice());
 
-//   // Remove some numbers to create the puzzle (question)
-//   const numToRemove = 40; // Adjust this number to control the number of cells filled
-//   let count = 0;
-//   while (count < numToRemove) {
-//     const row = Math.floor(Math.random() * size);
-//     const col = Math.floor(Math.random() * size);
-//     if (clonedGrid[row][col] !== 0) {
-//       clonedGrid[row][col] = 0;
-//       count++;
-//     }
-//   }
+  // Remove some numbers to create the puzzle (question)
+  const numToRemove = 40; // Adjust this number to control the number of cells filled
+  let count = 0;
+  while (count < numToRemove) {
+    const row = Math.floor(Math.random() * size);
+    const col = Math.floor(Math.random() * size);
+    if (clonedGrid[row][col] !== 0) {
+      clonedGrid[row][col] = 0;
+      count++;
+    }
+  }
 
-//   return clonedGrid;
-// }
+  return clonedGrid;
+}
 
 function solveSudokuAutomatically(grid) {
   const size = 9;
