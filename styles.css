@@ -1,0 +1,102 @@
+/* Add your CSS styles here */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(9, 40px);
+    grid-template-rows: repeat(9, 40px);
+    grid-gap: 2px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    background-color: #fff;
+    border: 2px solid #666;
+    padding: 10px;
+}
+
+.grid-item {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+/* Colorful alternating rows */
+.grid-item:nth-child(9n + 1),
+.grid-item:nth-child(9n + 2),
+.grid-item:nth-child(9n + 3) {
+    background-color: #f7f7f7;
+}
+
+.grid-item:nth-child(9n + 7),
+.grid-item:nth-child(9n + 8),
+.grid-item:nth-child(9n + 9) {
+    background-color: #f7f7f7;
+}
+
+/* Colorful alternating subgrids */
+.grid-item:nth-child(9n + 4),
+.grid-item:nth-child(9n + 5),
+.grid-item:nth-child(9n + 6) {
+    background-color: #f0f0f0;
+}
+
+.grid-item:nth-child(9n) {
+    background-color: #f0f0f0;
+}
+
+.grid-item.correct {
+    background-color: #b3e6c7;
+    color: #333;
+}
+
+.grid-item.wrong {
+    background-color: #ff9ea3;
+    color: #333;
+}
+
+.grid-item.non-editable {
+    background-color: #d3d3d3;
+    cursor: not-allowed;
+}
+
+.buttons-container {
+    margin-top: 20px;
+}
+
+button {
+    margin: 5px;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #444;
+}
