@@ -1,56 +1,3 @@
-// function generateSudokuGrid() {
-//   const size = 9;
-//   const grid = Array.from({ length: size }, () => Array(size).fill(0));
-//   function isValidPlacement(row, col, num) {
-//     for (let i = 0; i < size; i++) {
-//       if (grid[row][i] === num || grid[i][col] === num) {
-//         return false;
-//       }
-//     }
-//     const startRow = Math.floor(row / 3) * 3;
-//     const startCol = Math.floor(col / 3) * 3;
-//     for (let i = 0; i < 3; i++) {
-//       for (let j = 0; j < 3; j++) {
-//         if (grid[startRow + i][startCol + j] === num) {
-//           return false;
-//         }
-//       }
-//     }
-//     return true;
-//   }
-//   function solveSudoku() {
-//     for (let row = 0; row < size; row++) {
-//       for (let col = 0; col < size; col++) {
-//         if (grid[row][col] === 0) {
-//           for (let num = 1; num <= 9; num++) {
-//             if (isValidPlacement(row, col, num)) {
-//               grid[row][col] = num;
-//               if (solveSudoku()) {
-//                 return true;
-//               }
-//               grid[row][col] = 0;
-//             }
-//           }
-//           return false;
-//         }
-//       }
-//     }
-//     return true;
-//   }
-//   solveSudoku();
-//   const clonedGrid = grid.map((row) => row.slice());
-//   const numToRemove = 50; 
-//   let count = 0;
-//   while (count < numToRemove) {
-//     const row = Math.floor(Math.random() * size);
-//     const col = Math.floor(Math.random() * size);
-//     if (clonedGrid[row][col] !== 0) {
-//       clonedGrid[row][col] = 0;
-//       count++;
-//     }
-//   }
-//   return clonedGrid;
-// }
 function createSudokuGrid() {
   const gridContainer = document.querySelector(".grid-container");
   const grid = generateSudokuGrid();
@@ -85,7 +32,6 @@ function handleCellInput(event) {
 
 function check() {
   const gridItems = document.querySelectorAll(".grid-item");
-
   gridItems.forEach((gridItem) => {
     const rowIndex = parseInt(gridItem.getAttribute("data-row"));
     const colIndex = parseInt(gridItem.getAttribute("data-col"));
@@ -131,7 +77,7 @@ function check() {
     gridItems.forEach((gridItem) => {
       gridItem.classList.remove("correct", "wrong");
     });
-  }, 5000); 
+  }, 5000);
 }
 
 function reset() {
@@ -147,7 +93,7 @@ function reset() {
 function generateNew() {
   const gridContainer = document.querySelector(".grid-container");
   gridContainer.innerHTML = "";
-  createSudokuGrid(); 
+  createSudokuGrid();
 }
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -200,7 +146,7 @@ function generateSudokuGrid() {
   }
   solveSudoku();
   const clonedGrid = grid.map((row) => row.slice());
-  const numToRemove = 40; 
+  const numToRemove = 40;
   let count = 0;
   while (count < numToRemove) {
     const row = Math.floor(Math.random() * size);
@@ -213,7 +159,6 @@ function generateSudokuGrid() {
 
   return clonedGrid;
 }
-
 function solveSudokuAutomatically(grid) {
   const size = 9;
   function isValidPlacement(row, col, num) {
@@ -253,9 +198,9 @@ function solveSudokuAutomatically(grid) {
     return true;
   }
   if (solve()) {
-    return grid; 
+    return grid;
   } else {
-    return null; 
+    return null;
   }
 }
 function solve() {
@@ -283,11 +228,4 @@ function solve() {
 
 document.addEventListener("DOMContentLoaded", () => {
   createSudokuGrid();
-  const checkButton = document.querySelector(".btn-primary");
-  const resetButton = document.querySelector(".btn-secondary");
-  const newGameButton = document.querySelector(".btn-success");
-
-  checkButton.addEventListener("click", check);
-  resetButton.addEventListener("click", reset);
-  newGameButton.addEventListener("click", generateNew);
 });
