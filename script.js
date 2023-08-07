@@ -176,8 +176,6 @@ function generateSudokuGrid() {
 
     return true;
   }
-
-  // Helper function to solve the Sudoku using backtracking
   function solveSudoku() {
     for (let row = 0; row < size; row++) {
       for (let col = 0; col < size; col++) {
@@ -200,15 +198,9 @@ function generateSudokuGrid() {
     }
     return true;
   }
-
-  // Generate a random starting configuration by solving a completely empty grid
   solveSudoku();
-
-  // Clone the solved grid to create a new instance
   const clonedGrid = grid.map((row) => row.slice());
-
-  // Remove some numbers to create the puzzle (question)
-  const numToRemove = 40; // Adjust this number to control the number of cells filled
+  const numToRemove = 40; 
   let count = 0;
   while (count < numToRemove) {
     const row = Math.floor(Math.random() * size);
